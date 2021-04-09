@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <!-- key的作用 -->
+            <li v-for="(value,index) in fruits" :key=`${index}_li`>{{value}}</li>
+        </ul>
+    </div>
+    <script src="./node_modules//vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                fruits: ['苹果', '香蕉', '猕猴桃', '西瓜', '柠檬']
+            }
+        })
+    </script>
+</body>
+
+</html>

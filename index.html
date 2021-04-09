@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        {{msg}}
+    </div>
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        // vm viewModel vue的实例
+        let vm = new Vue({
+            el: "#app",
+            data: {
+                msg: "Hell  o world"
+            }
+        });
+        vm.ms = 10; // 异步的过程
+        console.log(vm.$el.innerHTML);
+        console.log(vm.$el);
+        vm.$watch(vm.msg, (newValue, oldValue) => {
+            consle.log(newValue, oldValue);
+        });
+    </script>
+</body>
+
+</html>
