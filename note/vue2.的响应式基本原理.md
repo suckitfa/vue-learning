@@ -1,5 +1,7 @@
 ```js
-function obse
+function observe(value) {
+    if ()
+}
 function defineReactive(data,key,value) {
     Object.defineProperty(data,key,{
         observe(value);//递归的劫持

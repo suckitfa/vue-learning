@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件的修饰符</title>
+</head>
+
+<body>
+    <div id="app">
+        <div @click.capture="parent">
+            Parent
+            <div @click="son">
+                Son
+                <div @click.stop="grandSon">
+                    GrandSon
+                </div>
+            </div>
+        </div>
+        <input type="text" v-focus.color="'red'">
+    </div>
+
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <script>
+        // 注册全局指令
+        // 指令钩子函数
+        Vue.directive('focus', {
+            bind() {
+                console.log("bind");
+            },
+            inserted(el, bindings, vnode) {
+                console.log(el, bindings, vnode);
+                console.log("inserted!");
+                if (bindings.modifiers.color) {
+                    el.style.background = bindings.value;
+                }
+                Vue.nextTick(function() {
+                    el.focus();
+                });
+            },
+            update() {
+                console.log("update!");
+            },
+            unbind() {
+                console.log("unbind!");
+            }
+        });
+        const app = new Vue({
+            el: "#app",
+            methods: {
+                parent: function() {
+                    alert("parent");
+                },
+                son: function() {
+                    alert("son");
+                },
+                grandSon: function() {
+                    alert('grandSon');
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>
